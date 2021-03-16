@@ -17,24 +17,24 @@ export const initialState = {
   ]
 }
 
-const todo = (todo) => {
-  switch(todo) {
-      case('todo'):
-          return todo;
-      default: // do nothing
-  }
-}
-
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case(FEATURE_ADD): return({
+    case(FEATURE_ADD): return ({
       ...state,
-      total: state.total + 1
-    });
-    case(FEATURE_REMOVE): return({
+      additionalPrice: state.additionalPrice + action.payload.price,
+      car: {
+        ...state.car,
+        features: [
+          ...state.car.features,
+          action.payload
+        ]
+      }
+    })
+    case(FEATURE_REMOVE): return ({
       ...state,
-      total: state.total + 1
-    });
+      additionalPrice: state.additionalPrice - action.payload.price,
+      additionalFeatures: state.car.features.filter(feature => feature !== action.payload)
+    })
     default: return state;
   }
 }

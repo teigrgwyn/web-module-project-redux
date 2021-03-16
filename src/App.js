@@ -8,8 +8,7 @@ import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
 import reducer, { initialState } from './reducers/index';
-import { addFeature, removeFeature } from './actions/index';
- 
+
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const store = createStore(reducer);
